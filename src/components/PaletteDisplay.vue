@@ -1,10 +1,14 @@
 <template>
-
+	<section class="palette_display">
+	</section>
 </template>
 
 <script>
 	export default {
-		name: 'PaletteDisplay'
+		name: 'PaletteDisplay',
+		props: {
+			palette: Array,
+		}
 	};
 </script>
 

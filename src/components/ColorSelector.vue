@@ -6,8 +6,14 @@
 </template>
 
 <script>
+import randomColor from 'randomcolor'
 export default {
-  name: 'ColorSelector'
+  name: 'ColorSelector',
+  methods: {
+    getRandomColor () {
+      let newColor = randomColor();
+    }
+  }
 };
 </script>
 

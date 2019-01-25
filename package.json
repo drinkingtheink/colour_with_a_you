@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "node-sass": "^4.11.0",
+    "randomcolor": "^0.5.3",
     "sass-loader": "^7.1.0",
     "vue": "^2.5.21",
     "vuex": "^3.0.1"
