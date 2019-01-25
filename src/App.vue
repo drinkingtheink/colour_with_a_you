@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <section class="color_selector_stage">
-      <h1>Colour with a YOU</h1>
+      <h1>Colour with a <span class="highlight">YOU</span></h1>
       <ColorSelector/>
     </section>
     <section class="palette_stage">
@@ -26,6 +26,7 @@ export default {
 <style lang="scss">
 @import './style/_base_styles.scss';
 @import './style/_palette.scss';
+@import './style/_mixins.scss';
 
 $padding: 1rem;
 
@@ -49,6 +50,12 @@ $padding: 1rem;
   left: 1rem;
   padding: $padding;
   z-index: 10;
+ }
+
+ .highlight {
+  font-size: 150%;
+  text-shadow: 5px 5px 0px darken($green, 10%), 
+                 8px 8px 0px lighten($green, 5%);
  }
 }
 </style>

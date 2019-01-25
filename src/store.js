@@ -6,7 +6,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
 	state: {
-		currentColor: null
+		currentColor: null,
+		currentPalette: null
 	},
 	mutations: {
 		updateCurrentColor (state, color) {
@@ -23,6 +24,9 @@ export default new Vuex.Store({
 		},
 		resetCurrentColor ({commit}) {
 			commit('updateCurrentColor', null);
+		},
+		getPaletteByColor ({commit}, color) {
+			
 		}
     }
 })
