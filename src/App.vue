@@ -24,53 +24,9 @@ export default {
 </script>
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css?family=Anaheim|Khand');
+@import './style/_base_styles.scss';
 
-$padding: 2rem;
-
-/*** FOUNDATIONAL ***/
-
-html,
-body {
-  height: 100%;
-  width: 100%;
-  position: relative;
-  font-size: 16pt;
-}
-
-/*** TYPOGRAPHY ***/
-
-h1,
-h2,
-h3,
-h4 {
-  font-family: 'Khand', sans-serif;
-}
-
-h1 {
-  font-size: 2.25rem;
-}
-
-h2 {
-  font-size: 1.75rem;
-}
-
-h3 {
-  font-size: 1.5rem;
-}
-
-h4 {
-  font-size: 1.25rem;
-}
-
-p,
-li,
-span,
-a {
-  font-family: 'Anaheim', sans-serif;
-}
-
-/*** LAYOUT ***/
+$padding: 1rem;
 
 #app {  
  .palette_stage {

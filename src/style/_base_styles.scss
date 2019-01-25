@@ -1,0 +1,13 @@
+@import './_overwrites.scss';
+@import './_buttons.scss';
+@import './_typography.scss';
+
+/*** FOUNDATIONAL ***/
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  font-size: 16pt;
+}
