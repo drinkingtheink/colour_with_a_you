@@ -5,6 +5,7 @@
 	>
 
 		<button class="clear_color" @click="resetCurrentColor()"> CLEAR </button>
+		<span class="hex_label">{{ currentColor }}</span>
 	</div>
 </template>
 
@@ -25,6 +26,20 @@
 </script>
 
 <style lang="scss" scoped>
+
+	@mixin data_label {
+		position: absolute;
+		top: .25rem;
+		width: auto;
+		background: rgba(black, .5);
+		color: white;
+		border: none;
+		padding: .25rem .5rem;
+		font-size: 75%;
+		border-radius: 10px;
+		opacity: .8;
+	}
+
 	.current_color_display {
 		margin-top: 1rem;
 		height: 3em;
@@ -34,23 +49,20 @@
 		position: relative;
 
 		.clear_color {
-			transition: all .2s;
-			position: absolute;
+			@include data_label;
 			right: .25rem;
-			top: .25rem;
-			width: auto;
-			background: rgba(black, .5);
-			color: white;
-			border: none;
-			padding: .25rem .5rem;;
-			font-size: 75%;
-			border-radius: 10px;
-			opacity: .8;
 
 			&:hover {
 				opacity: 1;
 				background: rgba(black, .8);
 			}
+		}
+
+		.hex_label {
+			@include data_label;
+			left: .25rem;
+			display: inline;
+			text-transform: uppercase;
 		}
 	}
 </style>

@@ -12,9 +12,9 @@
 
     <p v-show="currentColor">2. Find a palette using this color
 
-      <button class="select_random_color" @click="getRandomColor()">
+      <button class="select_random_color" @click="getPalettesByColor(currentColor)">
         Find a palette using 
-        <span class="choice_display" :style="{ backgroundColor: this.currentColor }"></span>
+        <span class="choice_display" :style="{ backgroundColor: currentColor }"></span>
       </button>
     </p>
   </div>
@@ -30,10 +30,10 @@ export default {
     ActiveColor
   },
   computed: {
-    ...mapState(['currentColor'])
+    ...mapState(['currentColor', 'palettes'])
   },
   methods: {
-    ...mapActions(['getRandomColor'])
+    ...mapActions(['getRandomColor', 'getPalettesByColor'])
   }
 };
 </script>

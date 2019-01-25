@@ -10,11 +10,8 @@
 	import { mapState } from 'vuex'
 	export default {
 		name: 'PaletteDisplay',
-		props: {
-			palette: Array,
-		},
 		computed: {
-			...mapState(['currentColor'])
+			...mapState(['currentColor', 'palettes'])
 		}
 	};
 </script>
