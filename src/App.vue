@@ -25,6 +25,7 @@ export default {
 
 <style lang="scss">
 @import './style/_base_styles.scss';
+@import './style/_palette.scss';
 
 $padding: 1rem;
 
@@ -36,12 +37,16 @@ $padding: 1rem;
   z-index: 1;
  }
 
+ h1 {
+  color: $yellow;
+  margin: 0;
+ }
+
  .color_selector_stage {
   width: 25vw;
   position: absolute;
   top: 1rem;
   left: 1rem;
-  background-color: rgba(0,0,0,.05);
   padding: $padding;
   z-index: 10;
  }
