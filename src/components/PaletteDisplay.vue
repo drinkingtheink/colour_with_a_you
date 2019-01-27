@@ -11,7 +11,8 @@
 				class="swatch" 
 				v-for="swatch in darkPalette"
 				:style="generateColorStyles(swatch)"
-				></span>
+				>
+				</span>
 		</div>
 
 		<div 
@@ -23,7 +24,8 @@
 				class="swatch" 
 				v-for="swatch in lightPalette"
 				:style="generateColorStyles(swatch)"
-				></span>
+				>
+				</span>
 		</div>
 
 		<div 
@@ -35,7 +37,21 @@
 				class="swatch" 
 				v-for="swatch in saturatedPalette"
 				:style="generateColorStyles(swatch)"
-				></span>
+				>
+				</span>
+		</div>
+
+		<div 
+			class="palette_object desaturated"
+			v-if="lightPalette"
+		>
+			<h3 class="palette_label">Desaturated</h3>
+			<span 
+				class="swatch" 
+				v-for="swatch in desaturatedPalette"
+				:style="generateColorStyles(swatch)"
+				>
+				</span>
 		</div>
 
 		<div 
@@ -54,10 +70,12 @@
 
 <script>
 	import { mapState } from 'vuex'
+	import chroma from 'chroma-js'
+
 	export default {
 		name: 'PaletteDisplay',
 		computed: {
-			...mapState(['currentColor', 'darkPalette', 'lightPalette', 'saturatedPalette', 'wildcardPalette', 'palettes'])
+			...mapState(['currentColor', 'darkPalette', 'lightPalette', 'saturatedPalette', 'desaturatedPalette', 'wildcardPalette', 'palettes'])
 		},
 		methods: {
 			generateColorStyles (swatch) {
@@ -84,12 +102,14 @@
 	position: absolute;
 	top: .25rem;
 	left: .25rem;
-	margin: 0;
+	margin: .5rem 0 0 .5rem;
 	padding: 0 .5rem;
+	background-color: rgba(black, .25);
+	font-size: 85%;
 }
 
 .swatch {
-	height: 10em;
+	height: 6em;
 	width: 15em;
 	margin-right: .5em;
 }
