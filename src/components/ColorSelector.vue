@@ -12,7 +12,7 @@
 
     <p v-show="currentColor">2. Find a palette using this color
 
-      <button class="select_random_color" @click="getPalettesByColor(currentColor)">
+      <button class="select_random_color" @click="getPaletteByColor(currentColor)">
         Find a palette using 
         <span class="choice_display" :style="{ backgroundColor: currentColor }"></span>
       </button>
@@ -33,7 +33,7 @@ export default {
     ...mapState(['currentColor', 'palettes'])
   },
   methods: {
-    ...mapActions(['getRandomColor', 'getPalettesByColor'])
+    ...mapActions(['getRandomColor', 'getPaletteByColor'])
   }
 };
 </script>
@@ -50,13 +50,13 @@ export default {
 }
 
 button {
-  background-color: $green;
+  background-color: $blue;
   transition: all .2s;
   margin-top: .5rem;
+  color: white;
 
   &:hover {
-    background-color: darken($green, 10%);
-    color: white;
+    background-color: darken($blue, 10%);
   }
 }
 
