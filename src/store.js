@@ -11,6 +11,8 @@ export default new Vuex.Store({
 		selectedPalette: null,
 		darkPalette: null,
 		lightPalette: null,
+		saturatedPalette: null,
+		wildcardPalette: null,
 		errors: null
 	},
 	mutations: {
@@ -31,6 +33,18 @@ export default new Vuex.Store({
 		},
 		addLightPalette (state, palette) {
 			state.lightPalette = palette
+		},
+		addSaturatedPalette (state, palette) {
+			state.saturatedPalette = palette
+		},
+		addWildcardPalette (state, palette) {
+			state.wildcardPalette = palette
+		},
+		emptyAllPalettes (state) {
+			state.lightPalette = null
+			state.darkPalette = null
+			state.saturatedPalette = null
+			state.wildcardPalette = null
 		}
  	},
 	actions: {
@@ -40,24 +54,30 @@ export default new Vuex.Store({
 		getRandomColor ({commit}) {
 			let newColor = randomColor();
 			commit('updateCurrentColor', newColor)
-			commit('emptyPalettes')
+			commit('emptyAllPalettes')
 		},
 		resetCurrentColor ({commit}) {
 			commit('updateCurrentColor', null)
-			commit('emptyPalettes')
+			commit('emptyAllPalettes')
 		},
 		getPaletteByColor ({commit}, color) {
 			let swatchCount = 5
 			let theColor = chroma(color)
 			let darkColors = []
 			let lightColors = []
+			let saturatedColors = []
+			let wildcardColors = []
 
 			for (var i = 0; i < swatchCount; i++) {
-				lightColors[i] = theColor.brighten(i);
-				darkColors[i] = theColor.darken(i);
+				lightColors[i] = theColor.brighten(i)
+				darkColors[i] = theColor.darken(i)
+				saturatedColors[i] = theColor.saturate(i + .5)
+				wildcardColors[i] = ( i === 0 ? theColor : randomColor())
 			}
 			commit('addDarkPalette', darkColors)
 			commit('addLightPalette', lightColors)
+			commit('addSaturatedPalette', saturatedColors)
+			commit('addWildcardPalette', wildcardColors)
 		}
   }
 })

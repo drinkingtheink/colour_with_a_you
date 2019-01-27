@@ -10,13 +10,6 @@
 
     <ActiveColor v-show="currentColor"/>
 
-    <p v-show="currentColor">2. Find a palette using this color
-
-      <button class="select_random_color" @click="getPaletteByColor(currentColor)">
-        Find a palette using 
-        <span class="choice_display" :style="{ backgroundColor: currentColor }"></span>
-      </button>
-    </p>
   </div>
 </template>
 
@@ -28,6 +21,13 @@ export default {
   name: 'ColorSelector',
   components: {
     ActiveColor
+  },
+  watch: {
+    currentColor: function () {
+      if (this.currentColor) {
+        this.getPaletteByColor(this.currentColor)
+      }
+    }
   },
   computed: {
     ...mapState(['currentColor', 'palettes'])
