@@ -1,29 +1,14 @@
 # colour_with_a_you_vue
 
-## Project setup
-```
-npm install
-```
+## Explore Color with Vue.js and Friends
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+This demo is an exploration of color using Vue/Vuex/chroma.js.
 
-### Compiles and minifies for production
-```
-npm run build
-```
+![Behold, the thing!](https://imgur.com/a/PwYpBiu)
 
-### Run your tests
-```
-npm run test
-```
+Thanks to these libraries/tools:
+* [chroma.js](https://gka.github.io/chroma.js/)
+* [HeroPatterns](http://www.heropatterns.com/)
+* [Vue.js](https://vuejs.org/)
+* [Vuex](https://vuex.vuejs.org/)
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
