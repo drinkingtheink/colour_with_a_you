@@ -51,7 +51,7 @@ export default new Vuex.Store({
 			state.desaturatedPalette = null
 			state.wildcardPalette = null
 		}
- 	},
+	},
 	actions: {
 		updateCurrentColor ({commit}, color) {
 			commit('updateCurrentColor', color)

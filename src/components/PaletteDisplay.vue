@@ -9,8 +9,9 @@
 			<h3 class="palette_label">Darker</h3>
 			<span 
 				class="swatch" 
-				v-for="swatch in darkPalette"
+				v-for="(swatch, index) in darkPalette"
 				:style="generateColorStyles(swatch)"
+				:key="`swatch_genned_${index}`"
 				>
 				</span>
 		</div>
@@ -22,8 +23,9 @@
 			<h3 class="palette_label">Lighter</h3>
 			<span 
 				class="swatch" 
-				v-for="swatch in lightPalette"
+				v-for="(swatch, index) in lightPalette"
 				:style="generateColorStyles(swatch)"
+				:key="`swatch_genned_${index}`"
 				>
 				</span>
 		</div>
@@ -35,8 +37,9 @@
 			<h3 class="palette_label">Saturated</h3>
 			<span 
 				class="swatch" 
-				v-for="swatch in saturatedPalette"
+				v-for="(swatch, index) in saturatedPalette"
 				:style="generateColorStyles(swatch)"
+				:key="`swatch_genned_${index}`"
 				>
 				</span>
 		</div>
@@ -48,8 +51,9 @@
 			<h3 class="palette_label">Desaturated</h3>
 			<span 
 				class="swatch" 
-				v-for="swatch in desaturatedPalette"
+				v-for="(swatch, index) in desaturatedPalette"
 				:style="generateColorStyles(swatch)"
+				:key="`swatch_genned_${index}`"
 				>
 				</span>
 		</div>
@@ -61,8 +65,9 @@
 			<h3 class="palette_label">Wildcard</h3>
 			<span 
 				class="swatch" 
-				v-for="swatch in wildcardPalette"
+				v-for="(swatch, index) in wildcardPalette"
 				:style="generateColorStyles(swatch)"
+				:key="`swatch_genned_${index}`"
 				></span>
 		</div>
 	</section>
@@ -70,7 +75,6 @@
 
 <script>
 	import { mapState } from 'vuex'
-	import chroma from 'chroma-js'
 
 	export default {
 		name: 'PaletteDisplay',

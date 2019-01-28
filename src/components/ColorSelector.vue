@@ -41,32 +41,59 @@ export default {
 <style lang="scss" scoped>
 @import '../style/_palette.scss';
 
+@keyframes gradientGlow {
+  0% {
+    background-position: 0% 50%
+  }
+  50% {
+    background-position: 100% 50%
+  }
+  100% {
+    background-position: 0% 50%
+  }
+}
+
 .color_selector {
   p {
       background-color: rgba(0,0,0,.25);
-      color: $yellow;
+      color: $dark_white;
       padding: .5rem 1rem;
   }
 }
 
+$animationDuration: 10s;
+
 button {
-  background-color: $blue;
   transition: all .2s;
   margin-top: .5rem;
   color: white;
+  text-shadow: 2px 2px 1px rgba(black, .4);
+  background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+  background-size: 400% 400%;
+  -webkit-animation: gradientGlow $animationDuration ease infinite;
+  -moz-animation: gradientGlow $animationDuration ease infinite;
+  animation: gradientGlow $animationDuration ease infinite;
+  position: relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(black, .2);
+    visibility: hidden;
+    transition: all .2s;
+  }
 
   &:hover {
-    background-color: darken($blue, 10%);
+    color: $grey;
+
+    &:before {
+      visibility: visible;
+    }
   }
-}
-
-$choice_dimension: .5em;
-
-.choice_display {
-  display: inline-block;
-  height: $choice_dimension;
-  width: $choice_dimension;
-  border: 2px solid $grey;
 }
 
 </style>
