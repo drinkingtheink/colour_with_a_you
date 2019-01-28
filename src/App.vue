@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <section class="color_selector_stage">
-      <h1>Colour with a <span class="highlight">YOU</span></h1>
+      <h1 class="main_title">Colour with a <span class="highlight">YOU</span></h1>
       <ColorSelector/>
     </section>
     <section class="palette_stage">
@@ -44,6 +44,10 @@ $selector_width: 25vw;
   margin: 0;
   line-height: 1.1;
   text-shadow: 2px 2px 1px rgba(black, .4);
+
+  &.main_title {
+    color: $dark_white;
+  }
  }
 
  .color_selector_stage {
@@ -54,6 +58,7 @@ $selector_width: 25vw;
  .highlight {
   font-size: 150%;
   animation: textshadowGlow 5s ease infinite;
+  color: white;
  }
 
  .palette_stage {

@@ -27,6 +27,7 @@ export default {
     currentColor: function () {
       if (this.currentColor) {
         this.getPaletteByColor(this.currentColor)
+        this.getScales(this.currentColor)
       }
     }
   },

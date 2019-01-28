@@ -32,16 +32,16 @@
 				</span>
 		</div>
 
-		<!-- <div class="scales_gallery" v-if="scales">
-				<h3 class="palette_label">Scales</h3>
-			<span 
+		<div class="scales_gallery" v-if="scales && showPalettes">
+			<h3 class="palette_label">Example Scales</h3>
+			<div 
 				class="scale" 
 				v-for="(scale, index) in scales"
 				:style="generateScaleStyles(scale)"
 				:key="`scale_genned_${index}`"
 				>
-				</span>
-		</div> -->
+			</div>
+		</div>
 
 		<div 
 			class="palette_object saturated"
@@ -51,21 +51,6 @@
 			<span 
 				class="swatch" 
 				v-for="(swatch, index) in saturatedPalette"
-				:style="generateColorStyles(swatch)"
-				:key="`swatch_genned_${index}`"
-				@click="updateCurrentColor(swatch)"
-				>
-				</span>
-		</div>
-
-		<div 
-			class="palette_object desaturated"
-			v-if="lightPalette"
-		>
-			<h3 class="palette_label">Desaturated</h3>
-			<span 
-				class="swatch" 
-				v-for="(swatch, index) in desaturatedPalette"
 				:style="generateColorStyles(swatch)"
 				:key="`swatch_genned_${index}`"
 				@click="updateCurrentColor(swatch)"
@@ -99,7 +84,7 @@
 	export default {
 		name: 'PaletteDisplay',
 		computed: {
-			...mapState(['currentColor', 'darkPalette', 'lightPalette', 'saturatedPalette', 'desaturatedPalette', 'wildcardPalette', 'scales']),
+			...mapState(['currentColor', 'darkPalette', 'lightPalette', 'saturatedPalette', 'wildcardPalette', 'scales']),
 			showPalettes () {
 				return this.darkPalette && this.darkPalette.length && this.darkPalette.length > 0
 			}
@@ -110,7 +95,9 @@
 				return `background-color: ${swatch}`
 			},
 			generateScaleStyles (scale) {
-				return `background-color: ${scale}`
+				let initialColor = scale[0] || '#ffffff'
+				let endColor = scale[1] || '#000000'
+				return `background: linear-gradient(to right, ${initialColor} 0%,${endColor} 100%);`
 			}
 		}
 	};
@@ -119,16 +106,25 @@
 <style lang="scss" scoped>
 @import '../style/_palette.scss';
 
+* {
+	transition: all .2s;
+}
+
 .palette_display {
 	padding-top: 1rem;	
 }
 
-.palette_object {
+.palette_object,
+.scales_gallery {
 	display: flex;
 	padding: .5rem;
-	margin-bottom: .5rem;
+	margin: 0 1em .5rem 0;
 	background: rgba(black, .25);
 	position: relative;
+
+	&:hover {
+		background: rgba(black, .75);
+	}
 }
 
 .palette_label {
@@ -139,10 +135,13 @@
 	padding: 0 .5rem;
 	background-color: rgba(black, .25);
 	font-size: 85%;
+	border-radius: 4px;
 }
 
+$item_height: 6em;
+
 @mixin gallery_item {
-	height: 6em;
+	height: $item_height;
 	width: 15em;
 	margin-right: .5em;
 }
@@ -153,6 +152,15 @@
 	&:hover {
 		cursor: pointer;
 	}
+}
+
+.scales_gallery {
+	flex-wrap: wrap;
+}
+
+.scale {
+	height: $item_height;
+	width: 100%;
 }
 
 @keyframes textshadowGlow {
