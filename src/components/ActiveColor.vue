@@ -1,19 +1,23 @@
 <template>
-<section class="current_color">
-	<div 
-			class="current_color_display"
-			:style="{ backgroundColor: this.currentColor }"
-		>
+	<section class="current_color">
+		<transition name="fade">
+			<div 
+					class="current_color_display"
+					:style="{ backgroundColor : this.currentColor }"
+			>
 
-		<button class="clear_color" @click="resetCurrentColor()"> CLEAR </button>
-	</div>
-
-	<div class="color_meta" v-if="currentColor">
-		<p><strong>HEX:</strong> {{ safeCurrentColorForHex(currentColor) }}</p>
-		<p><strong>RGB:</strong> {{ colorRgb }}</p>
-		<p><strong>HSL:</strong> {{ colorHsl }}</p>
-	</div>
-</section>
+				<button class="clear_color" @click="resetCurrentColor()"> CLEAR </button>
+			</div>
+		</transition>
+		
+		<transition name="fade">
+			<div class="color_meta" v-if="currentColor">
+				<p><strong>HEX:</strong> {{ safeCurrentColorForHex(currentColor) }}</p>
+				<p><strong>RGB:</strong> {{ colorRgb }}</p>
+				<p><strong>HSL:</strong> {{ colorHsl }}</p>
+			</div>
+		</transition>
+	</section>
 	
 </template>
 
@@ -47,6 +51,7 @@
 <style lang="scss" scoped>
 	@import '../style/_palette.scss';
 	@import '../style/_typography.scss';
+	@import '../style/_transitions.scss';
 
 	@mixin data_label {
 		position: absolute;

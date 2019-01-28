@@ -64,6 +64,7 @@ $selector_width: 25vw;
  .palette_stage {
   width: 75vw;
   overflow-y: auto;
+  overflow-x: no-scroll;
  }
 }
 

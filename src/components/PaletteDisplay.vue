@@ -160,6 +160,7 @@
 	border-radius: 4px;
 	color: white;
 	text-shadow: none;
+	z-index: 10;
 }
 
 $item_height: 6em;
@@ -179,14 +180,15 @@ $item_height: 6em;
 }
 
 .scales_gallery {
-
+	flex-wrap: wrap;
 }
 
 .scale {
 	height: $item_height;
-	width: 100%;
+	width: 33.3%;
 	position: relative;
 	font-weight: bold;
+	margin-bottom: .25rem;
 }
 
 .end_color_label {

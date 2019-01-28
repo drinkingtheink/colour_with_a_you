@@ -104,7 +104,7 @@ export default new Vuex.Store({
 			commit('addWildcardPalette', wildcardColors)
 		},
 		getScales ({commit}, color) {
-			let scaleCount = 3
+			let scaleCount = 6
 			let theColor = chroma(color)
 			let scales = []
 
