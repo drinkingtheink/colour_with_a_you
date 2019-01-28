@@ -3,6 +3,7 @@
     <p>1. Select a Color to Start
     
       <button class="select_random_color" @click="getRandomColor()">
+        <i class="fa" :class="ctaIconClass"></i>
         {{ currentColor ? 'Pick a Different Color' : 'Select One at Random' }}
       </button>
 
@@ -30,7 +31,10 @@ export default {
     }
   },
   computed: {
-    ...mapState(['currentColor', 'palettes'])
+    ...mapState(['currentColor', 'palettes']),
+    ctaIconClass () {
+      return this.currentColor ? 'fa-undo' : 'fa-bolt'
+    }
   },
   methods: {
     ...mapActions(['getRandomColor', 'getPaletteByColor', 'getScales'])
@@ -94,6 +98,10 @@ button {
     &:before {
       visibility: visible;
     }
+  }
+
+  i {
+    margin-right: .25em;
   }
 }
 
