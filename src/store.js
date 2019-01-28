@@ -8,12 +8,16 @@ Vue.use(Vuex)
 export default new Vuex.Store({
 	state: {
 		currentColor: null,
+		colorName: null,
+		colorRgb: null,
+		colorHsl: null,
 		selectedPalette: null,
 		darkPalette: null,
 		lightPalette: null,
 		saturatedPalette: null,
 		desaturdatedPalette: null,
 		wildcardPalette: null,
+		scales: null,
 		errors: null
 	},
 	mutations: {
@@ -50,6 +54,18 @@ export default new Vuex.Store({
 			state.saturatedPalette = null
 			state.desaturatedPalette = null
 			state.wildcardPalette = null
+		},
+		updateScales (state, scales) {
+			state.scales = scales
+		},
+		updateColorName (state, colorName) {
+			state.colorName = colorName
+		},
+		updateColorRgb (state, rgb) {
+			state.colorRgb = rgb
+		},
+		updateColorHsl (state, hsl) {
+			state.colorHsl = hsl
 		}
 	},
 	actions: {
@@ -81,11 +97,34 @@ export default new Vuex.Store({
 				desaturatedColors[i] = theColor.desaturate(i)
 				wildcardColors[i] = ( i == 0 ? theColor : randomColor())
 			}
+
 			commit('addDarkPalette', darkColors)
 			commit('addLightPalette', lightColors)
 			commit('addSaturatedPalette', saturatedColors)
 			commit('addDesaturatedPalette', desaturatedColors)
 			commit('addWildcardPalette', wildcardColors)
+		},
+		getScales ({commit}, color) {
+			let scaleCount = 3
+			let theColor = chroma(color)
+			let scales = []
+
+			for (var i = 0; i < scaleCount; i++) {
+				scales[i] = chroma.scale([theColor, randomColor()])
+			}
+
+			commit('updateScales', scales)
+		},
+		getColorMeta ({commit}, color) {
+			let theColor = chroma(color)
+			let theColorName = theColor.name()
+			commit('updateColorName', theColorName)
+
+			let colorRgb = theColor.rgb()
+			commit('updateColorRgb', colorRgb)
+
+			let colorHsl = theColor.hsl()
+			commit('updateColorHsl', colorHsl)
 		}
   }
 })

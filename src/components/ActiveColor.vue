@@ -1,12 +1,20 @@
 <template>
+<section class="current_color">
 	<div 
-		class="current_color_display"
-		:style="{ backgroundColor: this.currentColor }"
-	>
+			class="current_color_display"
+			:style="{ backgroundColor: this.currentColor }"
+		>
 
 		<button class="clear_color" @click="resetCurrentColor()"> CLEAR </button>
-		<span class="hex_label">{{ currentColor }}</span>
 	</div>
+
+	<div class="color_meta" v-if="currentColor">
+		<p><strong>HEX:</strong> {{ currentColor }}</p>
+		<p><strong>RGB:</strong> {{ colorRgb }}</p>
+		<p><strong>HSL:</strong> {{ colorHsl }}</p>
+	</div>
+</section>
+	
 </template>
 
 <script>
@@ -16,16 +24,25 @@
 		props: {
 			color: String
 		},
+		watch: {
+	    currentColor: function () {
+	      if (this.currentColor) {
+	        this.getColorMeta(this.currentColor)
+	      }
+	    }
+	  },
 		computed: {
-			...mapState(['currentColor'])
+			...mapState(['currentColor', 'colorName', 'colorHsl', 'colorRgb'])
 		},
 		methods: {
-			...mapActions(['resetCurrentColor'])
+			...mapActions(['resetCurrentColor', 'getColorMeta'])
 		}
 	};
 </script>
 
 <style lang="scss" scoped>
+	@import '../style/_palette.scss';
+	@import '../style/_typography.scss';
 
 	@mixin data_label {
 		position: absolute;
@@ -44,7 +61,7 @@
 		margin-top: 1rem;
 		height: 3em;
 		width: 100%;
-		border: 5px solid #333;
+		border: 5px solid rgba(black, .25);
 		transition: all .2s;
 		position: relative;
 
@@ -63,6 +80,20 @@
 			left: .25rem;
 			display: inline;
 			text-transform: uppercase;
+		}
+	}
+
+	.color_meta {
+		p {
+			padding: .25rem .5rem;
+			background-color: rgba(black, .25);
+			color: $dark_white;
+			display: flex;
+		}
+
+		strong {
+			font-family: $header_font;
+			padding-right: .5em;
 		}
 	}
 </style>

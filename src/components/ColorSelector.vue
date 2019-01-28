@@ -33,7 +33,7 @@ export default {
     ...mapState(['currentColor', 'palettes'])
   },
   methods: {
-    ...mapActions(['getRandomColor', 'getPaletteByColor'])
+    ...mapActions(['getRandomColor', 'getPaletteByColor', 'getScales'])
   }
 };
 </script>
@@ -61,14 +61,14 @@ export default {
   }
 }
 
-$animationDuration: 10s;
+$animationDuration: 6s;
 
 button {
   transition: all .2s;
   margin-top: .5rem;
   color: white;
   text-shadow: 2px 2px 1px rgba(black, .4);
-  background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+  background: linear-gradient(-45deg, $rainbow1, $rainbow2, $rainbow3, $rainbow4, $rainbow5);
   background-size: 400% 400%;
   -webkit-animation: gradientGlow $animationDuration ease infinite;
   -moz-animation: gradientGlow $animationDuration ease infinite;
@@ -89,6 +89,7 @@ button {
 
   &:hover {
     color: $grey;
+    background: white;
 
     &:before {
       visibility: visible;

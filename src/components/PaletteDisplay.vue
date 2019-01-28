@@ -1,5 +1,5 @@
 <template>
-	<section
+	<main
 		class="palette_display" 
 	>
 		<div 
@@ -29,6 +29,17 @@
 				>
 				</span>
 		</div>
+
+		<!-- <div class="scales_gallery" v-if="scales">
+				<h3 class="palette_label">Scales</h3>
+			<span 
+				class="scale" 
+				v-for="(scale, index) in scales"
+				:style="generateScaleStyles(scale)"
+				:key="`scale_genned_${index}`"
+				>
+				</span>
+		</div> -->
 
 		<div 
 			class="palette_object saturated"
@@ -70,7 +81,7 @@
 				:key="`swatch_genned_${index}`"
 				></span>
 		</div>
-	</section>
+	</main>
 </template>
 
 <script>
@@ -79,11 +90,14 @@
 	export default {
 		name: 'PaletteDisplay',
 		computed: {
-			...mapState(['currentColor', 'darkPalette', 'lightPalette', 'saturatedPalette', 'desaturatedPalette', 'wildcardPalette', 'palettes'])
+			...mapState(['currentColor', 'darkPalette', 'lightPalette', 'saturatedPalette', 'desaturatedPalette', 'wildcardPalette', 'scales'])
 		},
 		methods: {
 			generateColorStyles (swatch) {
 				return `background-color: ${swatch}`
+			},
+			generateScaleStyles (scale) {
+				return `background-color: ${scale}`
 			}
 		}
 	};
@@ -112,9 +126,13 @@
 	font-size: 85%;
 }
 
-.swatch {
+@mixin gallery_item {
 	height: 6em;
 	width: 15em;
 	margin-right: .5em;
+}
+
+.swatch {
+	@include gallery_item;
 }
 </style>
