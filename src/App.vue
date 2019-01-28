@@ -3,6 +3,11 @@
     <section class="color_selector_stage">
       <h1 class="main_title">Colour with a <span class="highlight">YOU</span></h1>
       <ColorSelector/>
+
+      <p class="project_info">
+        <a :href="repoLink" target="_blank">More about this project</a>
+        <a :href="portfolioLink" target="_blank">More about the author</a>
+      </p>
     </section>
     <section class="palette_stage">
       <PaletteDisplay/>
@@ -19,6 +24,12 @@ export default {
   components: {
     ColorSelector,
     PaletteDisplay
+  },
+  data () {
+    return {
+      repoLink: 'https://github.com/drinkingtheink/colour_with_a_you',
+      portfolioLink: 'https://drinkingtheink.github.io/'
+    }
   }
 };
 </script>
@@ -83,6 +94,22 @@ $selector_width: 25vw;
   }
   100% {
     text-shadow: 0 0 20px $rainbow1;
+  }
+}
+
+.project_info {
+  padding: .5rem;
+  background-color: rgba(black, .25);
+
+  a {
+    display: block;
+    font-size: 75%;
+    padding: .5rem .25rem;
+    text-align: center;
+
+    &:first-child {
+      border-bottom: 1px solid rgba(white, .2);
+    }
   }
 }
 
