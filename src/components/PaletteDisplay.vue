@@ -158,6 +158,8 @@
 	background-color: rgba(black, .25);
 	font-size: 85%;
 	border-radius: 4px;
+	color: white;
+	text-shadow: none;
 }
 
 $item_height: 6em;
@@ -192,7 +194,7 @@ $item_height: 6em;
 	right: 1em;
 	top: 1em;
 	min-width: 3em;
-	color: black;
+	color: white;
 	background-color: rgba(black, .25);
 	border-radius: 4px;
 	font-size: 75%;
