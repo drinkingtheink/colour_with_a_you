@@ -12,6 +12,7 @@
 				v-for="(swatch, index) in darkPalette"
 				:style="generateColorStyles(swatch)"
 				:key="`swatch_genned_${index}`"
+				@click="updateCurrentColor(swatch)"
 				>
 				</span>
 		</div>
@@ -26,6 +27,7 @@
 				v-for="(swatch, index) in lightPalette"
 				:style="generateColorStyles(swatch)"
 				:key="`swatch_genned_${index}`"
+				@click="updateCurrentColor(swatch)"
 				>
 				</span>
 		</div>
@@ -51,6 +53,7 @@
 				v-for="(swatch, index) in saturatedPalette"
 				:style="generateColorStyles(swatch)"
 				:key="`swatch_genned_${index}`"
+				@click="updateCurrentColor(swatch)"
 				>
 				</span>
 		</div>
@@ -65,6 +68,7 @@
 				v-for="(swatch, index) in desaturatedPalette"
 				:style="generateColorStyles(swatch)"
 				:key="`swatch_genned_${index}`"
+				@click="updateCurrentColor(swatch)"
 				>
 				</span>
 		</div>
@@ -79,6 +83,7 @@
 				v-for="(swatch, index) in wildcardPalette"
 				:style="generateColorStyles(swatch)"
 				:key="`swatch_genned_${index}`"
+				@click="updateCurrentColor(swatch)"
 				></span>
 		</div>
 
@@ -89,7 +94,7 @@
 </template>
 
 <script>
-	import { mapState } from 'vuex'
+	import { mapState, mapActions } from 'vuex'
 
 	export default {
 		name: 'PaletteDisplay',
@@ -100,6 +105,7 @@
 			}
 		},
 		methods: {
+			...mapActions(['updateCurrentColor']),
 			generateColorStyles (swatch) {
 				return `background-color: ${swatch}`
 			},
@@ -143,6 +149,10 @@
 
 .swatch {
 	@include gallery_item;
+
+	&:hover {
+		cursor: pointer;
+	}
 }
 
 @keyframes textshadowGlow {
@@ -166,6 +176,7 @@
 .empty {
 	background-color: rgba(black, .25);
 	padding: 5rem 2rem;
+	margin-right: 1em;
 	color: $dark_white;
 	text-align: center;
 }

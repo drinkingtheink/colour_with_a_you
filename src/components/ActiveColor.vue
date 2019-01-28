@@ -9,7 +9,7 @@
 	</div>
 
 	<div class="color_meta" v-if="currentColor">
-		<p><strong>HEX:</strong> {{ currentColor }}</p>
+		<p><strong>HEX:</strong> {{ safeCurrentColorForHex(currentColor) }}</p>
 		<p><strong>RGB:</strong> {{ colorRgb }}</p>
 		<p><strong>HSL:</strong> {{ colorHsl }}</p>
 	</div>
@@ -25,17 +25,21 @@
 			color: String
 		},
 		watch: {
-	    currentColor: function () {
-	      if (this.currentColor) {
-	        this.getColorMeta(this.currentColor)
-	      }
-	    }
-	  },
+			currentColor: function () {
+				if (this.currentColor) {
+					this.getColorMeta(this.currentColor)
+				}
+			}
+		},
 		computed: {
 			...mapState(['currentColor', 'colorName', 'colorHsl', 'colorRgb'])
 		},
 		methods: {
-			...mapActions(['resetCurrentColor', 'getColorMeta'])
+			...mapActions(['resetCurrentColor', 'getColorMeta']),
+			safeCurrentColorForHex (color) {
+				let colorIsNotHex = color['_rgb'] != undefined
+				return colorIsNotHex ? `---` : color
+			}
 		}
 	};
 </script>
