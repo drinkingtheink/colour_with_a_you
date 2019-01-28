@@ -4,7 +4,7 @@
 	>
 		<div 
 			class="palette_object dark"
-			v-if="showPalettes"
+			v-if="showPalettes && darkPalette"
 		>
 			<h3 class="palette_label">Darker</h3>
 			<span 
@@ -19,7 +19,7 @@
 
 		<div 
 			class="palette_object light"
-			v-if="lightPalette"
+			v-if="showPalettes && lightPalette"
 		>
 			<h3 class="palette_label">Lighter</h3>
 			<span 
@@ -45,7 +45,7 @@
 
 		<div 
 			class="palette_object saturated"
-			v-if="lightPalette"
+			v-if="showPalettes && saturatedPalette"
 		>
 			<h3 class="palette_label">Saturated</h3>
 			<span 
@@ -59,8 +59,23 @@
 		</div>
 
 		<div 
+			class="palette_object saturated"
+			v-if="showPalettes && desaturatedPalette"
+		>
+			<h3 class="palette_label">Desaturated</h3>
+			<span 
+				class="swatch" 
+				v-for="(swatch, index) in desaturatedPalette"
+				:style="generateColorStyles(swatch)"
+				:key="`swatch_genned_${index}`"
+				@click="updateCurrentColor(swatch)"
+				>
+				</span>
+		</div>
+
+		<div 
 			class="palette_object wildcard"
-			v-if="wildcardPalette"
+			v-if="showPalettes && wildcardPalette"
 		>
 			<h3 class="palette_label">Wildcard</h3>
 			<span 
@@ -84,7 +99,7 @@
 	export default {
 		name: 'PaletteDisplay',
 		computed: {
-			...mapState(['currentColor', 'darkPalette', 'lightPalette', 'saturatedPalette', 'wildcardPalette', 'scales']),
+			...mapState(['currentColor', 'darkPalette', 'lightPalette', 'saturatedPalette', 'desaturatedPalette', 'wildcardPalette', 'scales']),
 			showPalettes () {
 				return this.darkPalette && this.darkPalette.length && this.darkPalette.length > 0
 			}
