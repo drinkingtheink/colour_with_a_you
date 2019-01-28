@@ -40,6 +40,12 @@
 				:style="generateScaleStyles(scale)"
 				:key="`scale_genned_${index}`"
 				>
+				<span 
+						class="end_color_label"
+						@click="updateCurrentColor(scale[1])"
+				>
+						{{ scale[1] }}
+				</span>
 			</div>
 		</div>
 
@@ -59,7 +65,7 @@
 		</div>
 
 		<div 
-			class="palette_object saturated"
+			class="palette_object desaturated"
 			v-if="showPalettes && desaturatedPalette"
 		>
 			<h3 class="palette_label">Desaturated</h3>
@@ -120,6 +126,7 @@
 
 <style lang="scss" scoped>
 @import '../style/_palette.scss';
+@import '../style/_typography.scss';
 
 * {
 	transition: all .2s;
@@ -170,12 +177,33 @@ $item_height: 6em;
 }
 
 .scales_gallery {
-	flex-wrap: wrap;
+
 }
 
 .scale {
 	height: $item_height;
 	width: 100%;
+	position: relative;
+	font-weight: bold;
+}
+
+.end_color_label {
+	position: absolute;
+	right: 1em;
+	top: 1em;
+	min-width: 3em;
+	color: black;
+	background-color: rgba(black, .25);
+	border-radius: 4px;
+	font-size: 75%;
+	padding: .25rem .5rem;
+	font-family: $header_font;
+
+	&:hover {
+		cursor: pointer;
+		background-color: rgba(black, .75);
+		color: white;
+	}
 }
 
 @keyframes textshadowGlow {
