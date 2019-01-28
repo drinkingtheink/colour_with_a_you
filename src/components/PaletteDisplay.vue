@@ -4,7 +4,7 @@
 	>
 		<div 
 			class="palette_object dark"
-			v-if="darkPalette"
+			v-if="showPalettes"
 		>
 			<h3 class="palette_label">Darker</h3>
 			<span 
@@ -81,6 +81,10 @@
 				:key="`swatch_genned_${index}`"
 				></span>
 		</div>
+
+		<div class="empty" v-if="!showPalettes">
+			<h2>You shoud choose a <span class="highlight">color</span> over there.</h2>
+		</div>
 	</main>
 </template>
 
@@ -90,7 +94,10 @@
 	export default {
 		name: 'PaletteDisplay',
 		computed: {
-			...mapState(['currentColor', 'darkPalette', 'lightPalette', 'saturatedPalette', 'desaturatedPalette', 'wildcardPalette', 'scales'])
+			...mapState(['currentColor', 'darkPalette', 'lightPalette', 'saturatedPalette', 'desaturatedPalette', 'wildcardPalette', 'scales']),
+			showPalettes () {
+				return this.darkPalette && this.darkPalette.length && this.darkPalette.length > 0
+			}
 		},
 		methods: {
 			generateColorStyles (swatch) {
@@ -104,6 +111,8 @@
 </script>
 
 <style lang="scss" scoped>
+@import '../style/_palette.scss';
+
 .palette_display {
 	padding-top: 1rem;	
 }
@@ -135,4 +144,33 @@
 .swatch {
 	@include gallery_item;
 }
+
+@keyframes textshadowGlow {
+  0% {
+    text-shadow: 0 0 15px $rainbow1;
+  }
+  25% {
+    text-shadow: 0 0 25px $rainbow2;
+  }
+  50% {
+    text-shadow: 0 0 18px $rainbow3;
+  }
+  75% {
+    text-shadow: 0 0 30px $rainbow4;
+  }
+  100% {
+    text-shadow: 0 0 20px $rainbow1;
+  }
+}
+
+.empty {
+	background-color: rgba(black, .25);
+	padding: 5rem 2rem;
+	color: $dark_white;
+	text-align: center;
+}
+
+.highlight {
+  animation: textshadowGlow 5s ease infinite;
+ }
 </style>

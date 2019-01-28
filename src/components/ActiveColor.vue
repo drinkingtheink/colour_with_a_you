@@ -89,6 +89,7 @@
 			background-color: rgba(black, .25);
 			color: $dark_white;
 			display: flex;
+			margin-bottom: .5rem;
 		}
 
 		strong {

@@ -57,7 +57,7 @@ export default {
   p {
       background-color: rgba(0,0,0,.25);
       color: $dark_white;
-      padding: .5rem 1rem;
+      padding: .5rem 1rem 1rem 1rem;
   }
 }
 
