@@ -133,7 +133,7 @@
 }
 
 .palette_display {
-	padding-top: 1rem;	
+
 }
 
 .palette_object,

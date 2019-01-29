@@ -4,7 +4,7 @@
     
       <button class="select_random_color" @click="getRandomColor()">
         <i class="fa" :class="ctaIconClass"></i>
-        {{ currentColor ? 'Pick a Different Color' : 'Select One at Random' }}
+        {{ currentColor ? 'Different One' : 'Pick Random Color' }}
       </button>
 
       <input class="hex_input" v-model="hexInput" @keydown="removeHashes()" :placeholder="hexPlaceholder" />
