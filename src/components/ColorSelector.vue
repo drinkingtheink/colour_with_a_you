@@ -7,6 +7,8 @@
         {{ currentColor ? 'Pick a Different Color' : 'Select One at Random' }}
       </button>
 
+      <input class="hex_input" v-model="hexInput" @keydown="removeHashes()" :placeholder="hexPlaceholder" />
+      <span class="hex_input_feedback" v-if="hexFeedback">{{ hexFeedback }}</span>
     </p>
 
     <ActiveColor v-show="currentColor"/>
@@ -18,10 +20,20 @@
 import ActiveColor from './ActiveColor.vue'
 import { mapState, mapActions } from 'vuex'
 
+const initialPlaceholder = 'Or add a hex here...'
+
 export default {
   name: 'ColorSelector',
   components: {
     ActiveColor
+  },
+  data () {
+    return {
+      hexInput: null,
+      hexPlaceholder: initialPlaceholder,
+      hexIsValid: false,
+      hexFeedback: null
+    }
   },
   watch: {
     currentColor: function () {
@@ -29,22 +41,70 @@ export default {
         this.getPaletteByColor(this.currentColor)
         this.getScales(this.currentColor)
       }
+
+      if(!this.currentColor) {
+        this.resetHexSelection()
+      }
+    },
+    hexInput: function () {
+      if (!this.hexInput) {
+        this.hexFeedback = null
+      }
+      // start digesting at 3 chars
+      if (this.hexInput && this.hexInput.length > 2) {
+        this.digestHexInput(this.hexInput)
+      }
+      // don't let users add more than 6 chars
+      if (this.hexInput && this.hexInput.length > 6) {
+        this.hexInput = this.hexInput.substring(0, 6);
+      }
+    },
+    hexIsValid: function () {
+      this.hexFeedback = null
     }
   },
   computed: {
-    ...mapState(['currentColor', 'palettes']),
+    ...mapState(['currentColor', 'hexPattern']),
     ctaIconClass () {
       return this.currentColor ? 'fa-undo' : 'fa-bolt'
     }
   },
   methods: {
-    ...mapActions(['getRandomColor', 'getPaletteByColor', 'getScales'])
+    ...mapActions(['getRandomColor', 'getPaletteByColor', 'getScales', 'updateCurrentColor']),
+    digestHexInput (hex) {
+      let formattedHex = `#${hex}`
+      let isValid = this.hexPattern.test(formattedHex)
+      if (isValid) {
+        this.hexIsValid = true
+        this.hexFeedback = null
+        this.updateCurrentColor(formattedHex)
+      } else {
+        this.hexFeedback = 'Values should only be 3 or 6 characters and within the hex range'
+      }
+    },
+    removeHashes () {
+      // remove #'s - we'll handle those
+      if (this.hexInput && this.hexInput.includes('#')) {
+        let cleansedText = this.hexInput.replace('/#','')
+        this.hexInput = cleansedText
+      }
+    },
+    resetHexSelection () {
+      this.hexInput = null
+      this.hexIsValid = false
+      this.hexFeedback = null
+      this.hexPlaceholder = initialPlaceholder
+    }
   }
 };
 </script>
 
 <style lang="scss" scoped>
 @import '../style/_palette.scss';
+
+* {
+  transition: all .2s;
+}
 
 @keyframes gradientGlow {
   0% {
@@ -104,6 +164,29 @@ button {
   i {
     margin-right: .25em;
   }
+}
+
+input {
+  display: block;
+  width: 95%;
+  background: transparent;
+  border-bottom: 2px solid rgba(white, .3);
+  padding: .5rem;
+  margin-top: .5rem;
+  border-radius: 4px;
+  color: $dark_white;
+
+  &:focus {
+    background: rgba(white, .75);
+    color: $color1;
+  }
+}
+
+.hex_input_feedback {
+  display: block;
+  padding: .25rem 0;
+  color: $rainbow5;
+  font-size: 80%;
 }
 
 </style>

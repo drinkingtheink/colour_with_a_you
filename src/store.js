@@ -18,7 +18,8 @@ export default new Vuex.Store({
 		desaturatedPalette: null,
 		wildcardPalette: null,
 		scales: null,
-		errors: null
+		errors: null,
+		hexPattern: /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/
 	},
 	mutations: {
 		updateCurrentColor (state, color) {
