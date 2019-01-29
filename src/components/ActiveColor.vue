@@ -53,6 +53,10 @@
 	@import '../style/_typography.scss';
 	@import '../style/_transitions.scss';
 
+	* {
+		transition: all .2s;
+	}
+
 	@mixin data_label {
 		position: absolute;
 		top: .25rem;
@@ -99,6 +103,7 @@
 			color: $dark_white;
 			display: flex;
 			margin-bottom: .5rem;
+			font-size: 90%;
 		}
 
 		strong {
