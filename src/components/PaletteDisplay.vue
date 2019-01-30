@@ -33,7 +33,9 @@
 		</div>
 
 		<div class="scales_gallery" v-if="scales && showPalettes">
-			<h3 class="palette_label">Example Scales</h3>
+			<h3 class="palette_label">
+				Example Scales <i class="fa fa-undo refresh_section" @click="getScales(currentColor)"></i>
+			</h3>
 			<div 
 				class="scale" 
 				v-for="(scale, index) in scales"
@@ -83,7 +85,9 @@
 			class="palette_object wildcard"
 			v-if="showPalettes && wildcardPalette"
 		>
-			<h3 class="palette_label">Wildcard</h3>
+			<h3 class="palette_label">
+				Wildcard <i class="fa fa-undo refresh_section" @click="getWildcardPalette(currentColor)"></i>
+			</h3>
 			<span 
 				class="swatch" 
 				v-for="(swatch, index) in wildcardPalette"
@@ -111,7 +115,7 @@
 			}
 		},
 		methods: {
-			...mapActions(['updateCurrentColor']),
+			...mapActions(['updateCurrentColor', 'getScales', 'getWildcardPalette']),
 			generateColorStyles (swatch) {
 				return `background-color: ${swatch}`
 			},
@@ -238,5 +242,17 @@ $item_height: 6em;
 
 .highlight {
   animation: textshadowGlow 5s ease infinite;
+ }
+
+ .refresh_section {
+ 	margin-left: .25rem;
+ 	opacity: .8;
+ 	text-shadow: none;
+
+ 	&:hover {
+ 		opacity: 1;
+ 		cursor: pointer;
+ 		text-shadow: 0 0 3px rgba(black, .5);
+ 	}
  }
 </style>

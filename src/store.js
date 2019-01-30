@@ -5,6 +5,8 @@ import chroma from 'chroma-js'
 
 Vue.use(Vuex)
 
+const swatchCount = 5
+
 export default new Vuex.Store({
 	state: {
 		currentColor: null,
@@ -82,7 +84,6 @@ export default new Vuex.Store({
 			commit('emptyAllPalettes')
 		},
 		getPaletteByColor ({commit}, color) {
-			let swatchCount = 5
 			let theColor = chroma(color)
 			let darkColors = []
 			let lightColors = []
@@ -102,6 +103,15 @@ export default new Vuex.Store({
 			commit('addLightPalette', lightColors)
 			commit('addSaturatedPalette', saturatedColors)
 			commit('addDesaturatedPalette', desaturatedColors)
+			commit('addWildcardPalette', wildcardColors)
+		},
+		getWildcardPalette ({commit}, color) {
+			let theColor = chroma(color)
+			let wildcardColors = []
+
+			for (var i = 0; i < swatchCount; i++) {
+				wildcardColors[i] = ( i == 0 ? theColor : randomColor())
+			}
 			commit('addWildcardPalette', wildcardColors)
 		},
 		getScales ({commit}, color) {
