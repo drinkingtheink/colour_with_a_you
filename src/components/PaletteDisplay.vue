@@ -129,6 +129,7 @@
 </script>
 
 <style lang="scss" scoped>
+/* eslint-disable no-mixed-spaces-and-tabs */
 @import '../style/_palette.scss';
 @import '../style/_typography.scss';
 
@@ -185,11 +186,12 @@ $item_height: 6em;
 
 .scales_gallery {
 	flex-wrap: wrap;
+	justify-content: space-between;
 }
 
 .scale {
 	height: $item_height;
-	width: 33.3%;
+	width: 33%;
 	position: relative;
 	font-weight: bold;
 	margin-bottom: .25rem;
