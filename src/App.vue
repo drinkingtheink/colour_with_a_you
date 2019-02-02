@@ -115,6 +115,7 @@ $media_target: 900px;
 
 .project_info {
   display: flex;
+  margin-bottom: .5rem;
 
   @media only screen  and (max-width : $media_target) {
     display: block;

@@ -2,6 +2,14 @@
 	<main
 		class="palette_display" 
 	>
+		<transiton name="fade">
+			<h3 
+				class="swatch_click_instructions" 
+				v-show="currentColor"
+				:style="{ color: currentColor }"
+			>Click on any swatch or hotspot to activate that color</h3>
+		</transiton>
+
 		<div 
 			class="palette_object dark"
 			v-if="showPalettes && darkPalette"
@@ -256,5 +264,13 @@ $item_height: 6em;
  		cursor: pointer;
  		text-shadow: 0 0 3px rgba(black, .5);
  	}
+ }
+
+ .swatch_click_instructions {
+ 	margin: 0;
+ 	padding: 0 0 .5rem 0;
+ 	font-size: 100%;
+ 	text-align: center;
+ 	opacity: .6;
  }
 </style>
